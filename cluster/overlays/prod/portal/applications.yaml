@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: portal-apps
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - app: signin-book
+            namespace: guest
+  template:
+    spec:
+      revisionHistoryLimit: 0
+      source:
+        path: 'environments/overlays/prod/{{app}}'

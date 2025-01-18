@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: portal-apps
+  namespace: argocd
+spec:
+  template:
+    metadata:
+      name: '{{app}}'
+      namespace: guest
+      labels:
+        app.kubernetes.io/name: '{{app}}'
+      finalizers:
+        - resources-finalizer.argocd.argoproj.io
+    spec:
+      project: guest
+      revisionHistoryLimit: 0
+      source:
+        repoURL: https://github.com/robertcoltheart/argocd-test.git
+        targetRevision: HEAD
+        path: '{{.path.path}}'
+      destination:
+        namespace: '{{namespace}}'
+        server: https://kubernetes.default.svc
+      syncPolicy:
+        automated:
+          selfHeal: true
+          prune: true
+        syncOptions:
+          - CreateNamespace=true

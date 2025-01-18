@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: guest-apps
+  namespace: argocd
+spec:
+  generators:
+    - git:
+        repoURL: https://github.com/robertcoltheart/argocd-test.git
+        revision: HEAD
+        directories:
+          - path: 'cluster/overlays/dev/*'
