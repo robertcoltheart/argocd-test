@@ -10,3 +10,5 @@ spec:
         revision: HEAD
         directories:
           - path: 'cluster/overlays/prod/*'
+        values:
+          cluster: '{{.branch}}'
