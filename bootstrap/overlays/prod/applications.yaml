@@ -7,7 +7,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        revision: '{{ .spec.template.spec.source.targetRevision }}'
+        revision: &branch master
         directories:
           - path: 'cluster/overlays/prod/*'
         values:

@@ -19,7 +19,7 @@ spec:
       revisionHistoryLimit: 0
       source:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        targetRevision: HEAD
+        targetRevision: *branch
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
