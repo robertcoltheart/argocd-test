@@ -6,6 +6,14 @@ metadata:
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
+  generators:
+    - git:
+        repoURL: https://github.com/robertcoltheart/argocd-test.git
+        revision: &branch master
+        directories:
+          - path: 'cluster/overlays/prod/*'
+        values:
+          cluster: 'dev'
   template:
     metadata:
       name: '{{.path.basename}}'

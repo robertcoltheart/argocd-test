@@ -3,12 +3,3 @@ kind: ApplicationSet
 metadata:
   name: guest-apps
   namespace: argocd
-spec:
-  generators:
-    - git:
-        repoURL: https://github.com/robertcoltheart/argocd-test.git
-        revision: &branch master
-        directories:
-          - path: 'cluster/overlays/prod/*'
-        values:
-          cluster: 'dev'
