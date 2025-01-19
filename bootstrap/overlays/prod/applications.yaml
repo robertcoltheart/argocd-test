@@ -9,4 +9,4 @@ spec:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
         revision: HEAD
         directories:
-          - path: 'cluster/overlays/dev/*'
+          - path: 'cluster/overlays/prod/*'
