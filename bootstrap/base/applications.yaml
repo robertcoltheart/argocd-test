@@ -29,7 +29,7 @@ spec:
       revisionHistoryLimit: 0
       source:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        targetRevision: '{{.metadata.annotations.revision}}'
+        targetRevision: '{{ index .metadata.annotations "revision" }}'
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
