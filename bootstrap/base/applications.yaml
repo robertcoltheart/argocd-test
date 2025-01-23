@@ -11,7 +11,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        revision: '{{.metadata.annotations.revision}}'
+        revision: master
         directories:
           - path: 'cluster/overlays/prod/*'
         values:
