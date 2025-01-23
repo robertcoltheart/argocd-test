@@ -3,13 +3,15 @@ kind: ApplicationSet
 metadata:
   name: guest-apps
   namespace: argocd
+  annotations:
+    revision: master
 spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        revision: &branch master
+        revision: '{{.metadata.annotations.revision}}'
         directories:
           - path: 'cluster/overlays/prod/*'
         values:
@@ -27,7 +29,7 @@ spec:
       revisionHistoryLimit: 0
       source:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        targetRevision: *branch
+        targetRevision: '{{.metadata.annotations.revision}}'
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
