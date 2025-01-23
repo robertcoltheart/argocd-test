@@ -9,13 +9,19 @@ spec:
   goTemplate: true
   goTemplateOptions: ["missingkey=error"]
   generators:
-    - git:
-        repoURL: https://github.com/robertcoltheart/argocd-test.git
-        revision: master
-        directories:
-          - path: 'cluster/overlays/prod/*'
-        values:
-          cluster: 'dev'
+    - matrix:
+        generators:
+          - clusters:
+              selector:
+                matchLabels:
+                  environment: "prod"
+          - git:
+              repoURL: https://github.com/robertcoltheart/argocd-test.git
+              revision: '{{ index .metadata.annotations "revision" }}'
+              directories:
+                - path: 'cluster/overlays/prod/*'
+              values:
+                cluster: 'dev'
   template:
     metadata:
       name: '{{.path.basename}}'
