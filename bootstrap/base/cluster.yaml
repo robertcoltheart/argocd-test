@@ -9,5 +9,3 @@ metadata:
     argocd.argoproj.io/secret-type: cluster
     environment: prod
 type: Opaque
-stringData:
-  server: "https://kubernetes.default.svc"
