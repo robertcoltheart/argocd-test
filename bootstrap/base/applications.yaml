@@ -14,14 +14,12 @@ spec:
           - clusters:
               selector:
                 matchLabels:
-                  environment: "prod"
+                  app.kubernetes.io/name: "guest"
           - git:
               repoURL: https://github.com/robertcoltheart/argocd-test.git
-              revision: '{{ index .metadata.annotations "revision" }}'
+              revision: '{{ index .metadata.labels "app.kubernetes.io/version" }}'
               directories:
-                - path: 'cluster/overlays/prod/*'
-              values:
-                cluster: 'dev'
+                - path: 'cluster/overlays/{{ index .metadata.labels "app.kubernetes.io/environment" }}/*'
   template:
     metadata:
       name: '{{.path.basename}}'
@@ -35,7 +33,7 @@ spec:
       revisionHistoryLimit: 0
       source:
         repoURL: https://github.com/robertcoltheart/argocd-test.git
-        targetRevision: '{{ index .metadata.annotations "revision" }}'
+        targetRevision: '{{ index .metadata.labels "app.kubernetes.io/version" }}'
         path: '{{.path.path}}'
       destination:
         server: https://kubernetes.default.svc
