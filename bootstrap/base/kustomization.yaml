@@ -3,4 +3,4 @@ kind: Kustomization
 
 resources:
   - applications.yaml
-  - cluster.yaml
+  - environment.yaml

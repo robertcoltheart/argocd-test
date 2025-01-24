@@ -5,4 +5,4 @@ resources:
   - ../../base
 
 patches:
-  - path: cluster.yaml
+  - path: environment.yaml

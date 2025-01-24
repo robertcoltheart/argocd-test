@@ -4,8 +4,8 @@ metadata:
   name: guest
   namespace: argocd
   labels:
-    argocd.argoproj.io/secret-type: cluster
-    app.kubernetes.io/name: guest
+    # This value shouldn't be changed, as it points to a specific folder in the target repository
     app.kubernetes.io/environment: prod
+    # This value should be a tag or commit hash
     app.kubernetes.io/version: master
 type: Opaque

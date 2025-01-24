@@ -4,5 +4,6 @@ metadata:
   name: guest
   namespace: argocd
   labels:
-    app.kubernetes.io/version: master
+    argocd.argoproj.io/secret-type: cluster
+    app.kubernetes.io/name: guest
 type: Opaque
